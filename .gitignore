@@ -1,0 +1,14 @@
+/.idea
+
+.DS_Store
+
+/myenv_clic
+/build
+/main.egg-info
+/resources
+
+
+
+/__pycache__
+/*/__pycache__
+/*/*/__pycache__
