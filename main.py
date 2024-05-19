@@ -1,9 +1,15 @@
-import pyautogui
-import tkinter as tk
 from tkinter import messagebox
+import pyautogui
+from tkinter import *
+import tkinter as tk
 from threading import Thread
 import time
 from pynput import keyboard
+from tkinter import font
+
+
+
+
 
 class AutoClicker:
     def __init__(self, root):
@@ -19,11 +25,12 @@ class AutoClicker:
         
         # Кнопка для добавления позиции клика
         self.add_btn = tk.Button(root, text="Добавь точку куда кликать (Ctrl+A)", command=self.add_position)
-        self.add_btn.pack(pady=5)  # Добавляем кнопку в окно с отступом
+        self.add_btn.pack(pady=5)    # Добавляем кнопку в окно с отступом
+        
         
         # Кнопка для запуска автокликера
         self.start_btn = tk.Button(root, text="Начать кликать (Ctrl+S)", command=self.start_clicking)
-        self.start_btn.pack(pady=20)  # Добавляем кнопку в окно с отступом
+        self.start_btn.pack(pady=5)  # Добавляем кнопку в окно с отступом
         
         # Кнопка для остановки автокликера
         self.stop_btn = tk.Button(root, text="Перестать кликать (Ctrl+X)", command=self.stop_clicking)
@@ -57,6 +64,9 @@ class AutoClicker:
         # Обновляем текст метки для отображения новых координат
         self.pos_label.config(text=f"Positions: {self.coordinates}")
         
+     
+        
+        
         # Создаем маленькое окно для метки
         marker = tk.Toplevel(self.root)
         marker.geometry(f"10x10+{pos[0]}+{pos[1]}")
@@ -69,7 +79,7 @@ class AutoClicker:
         # Проверяем, есть ли координаты для кликов
         if not self.coordinates:
             # Показать предупреждение, если координаты не заданы
-            messagebox.showwarning("No Positions", "Add at least one position first!")
+            messagebox.showwarning("позиция не выбрана!")
             return
         # Устанавливаем флаг запуска автокликера
         self.running = True
@@ -104,6 +114,9 @@ class AutoClicker:
                 time.sleep(delay)
 
 if __name__ == "__main__":
-    root = tk.Tk()  # Создаем главное окно
+    root = tk.Tk() # Создаем главное окно
+    root.geometry("400x300") # размер начального окна
+    root.attributes("-alpha", 0.9) # прозрачность окна
+    root['bg'] = '#A0A0A4' # цвет фона окна
     app = AutoClicker(root)  # Создаем экземпляр автокликера
     root.mainloop()  # Запускаем главный цикл обработки событий
